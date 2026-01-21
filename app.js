@@ -34,5 +34,46 @@ const philosophers = [
 ];
 
 window.philosophers = philosophers;
+const container = document.getElementById("philosopher-cards");
+
+function renderPhilosophers(list) {
+  container.innerHTML = "";
+
+  list.forEach(p => {
+    const card = document.createElement("div");
+    card.className = "card";
+
+    card.innerHTML = `
+      <h3>${p.name}</h3>
+      <span class="tag">${p.school}</span>
+
+      <section>
+        <h4>Historia</h4>
+        <p>${p.summary}</p>
+      </section>
+
+      <section>
+        <h4>Lo que no lo dejaba dormir</h4>
+        <p>${p.insomnia}</p>
+      </section>
+
+      <section>
+        <h4>Aplicable hoy</h4>
+        <p>${p.advice}</p>
+      </section>
+
+      <section>
+        <h4>Textos base</h4>
+        <ul>
+          ${p.sources.map(s => `<li>${s}</li>`).join("")}
+        </ul>
+      </section>
+    `;
+
+    container.appendChild(card);
+  });
+}
+
+renderPhilosophers(philosophers);
 
 
